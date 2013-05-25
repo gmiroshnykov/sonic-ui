@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Sonic IO</title>
+  </head>
+  <body>
+    <h1>Sonic IO</h1>
+    Distance: <span id="distance">N/A</span> cm
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var distanceEl = document.getElementById('distance');
+      var socket = io.connect('http://localhost:5000');
+      socket.on('distance', function (distance) {
+        distanceEl.innerHTML = distance;
+      });
+    </script>
+  </body>
+</html>
