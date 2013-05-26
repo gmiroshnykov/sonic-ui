@@ -8,8 +8,14 @@ app.get('/', function (req, res) {
   res.sendfile(__dirname + '/index.html');
 });
 
-var distance = 42;
-
-setInterval(function() {
-  io.sockets.emit('distance', distance++);
-}, 1000);
+var SerialPort = require("serialport").SerialPort;
+var serialPort = new SerialPort("/dev/tty.usbmodem621", {
+  baudrate: 9600
+});
+var split = require('split');
+serialPort.pipe(split())
+    .on('data', function (line) {
+      //each chunk now is a seperate line!
+      console.log(line);
+      io.sockets.emit('distance', line);
+    });
