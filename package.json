@@ -10,6 +10,7 @@
   "dependencies": {
     "serialport": "~1.1.0",
     "socket.io": "~0.9.14",
-    "express": "~3.2.5"
+    "express": "~3.2.5",
+    "split": "~0.2.5"
   }
 }
